@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import Validation from 'Validation';
+
+import {updateUser, clearUser} from '../actions'
+import Validation from './Validation';
 
 export default class Login extends Component {
-	formData=[	
+	
+ 	formData=[	
 		{
 			title:"Username",
 			type:"text", 
@@ -47,16 +50,17 @@ export default class Login extends Component {
 		}
 	]
 
-
-  constructor() {
-    super();
+	constructor(props) {
+    super(props);
     this.state = {
-      username:"",
-      email: "",
-      pass: "",
-      pass2:"",
-      firstname: "",
-      lastname: "",
+    	user:{
+      	username:"",
+	      email: "",
+	      pass: "",
+	      pass2:"",
+	      firstname: "",
+	      lastname: ""
+      }
     }
     
     this.handleChange = this.handleChange.bind(this);
@@ -66,7 +70,7 @@ export default class Login extends Component {
     let newState = {};
     newState[e.target.name] = e.target.value;
     this.setState(newState);
-    console.log(this.state)
+    updateUser(newState);
   }
   handleSubmit(e){
    	alert("A new user was Created for you"+ this.state.firstname);
@@ -81,7 +85,7 @@ export default class Login extends Component {
   				<h2>{form.title}</h2>
   				<input key={index} name={form.name} type={form.type} placeholder={form.placeholder} onChange={this.handleChange}  />  
   			  
-  			  <Validation value={this.getvalue(form.name)}  name={form.name} type={form.validation} />
+  			 <Validation name={form.name} type={form.validation} />
   			</div>
   		)
   	})
@@ -92,7 +96,7 @@ export default class Login extends Component {
 	}
 
 	render() {
-		
+		console.log(this.props)
 		return (
 			<div id="login">
 				<form method="post" action="/user/add">

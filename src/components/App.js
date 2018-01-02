@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Menu from './Menu';
-import Login from'./Login';
+import Login from'../containers/user';
 import Title from'./Title';
 import { Route } from 'react-router-dom';
 
