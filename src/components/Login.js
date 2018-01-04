@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import {updateUser, clearUser} from '../actions'
 import Validation from './Validation';
 
 export default class Login extends Component {
@@ -53,25 +52,27 @@ export default class Login extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-    	user:{
-      	username:"",
-	      email: "",
-	      pass: "",
-	      pass2:"",
-	      firstname: "",
-	      lastname: ""
-      }
+     	username:"",
+      email: "",
+      pass: "",
+      pass2:"",
+      firstname: "",
+      lastname: ""	
     }
     
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
   }
   handleChange(e) {
+		const{updateUser}=this.props;
     let newState = {};
     newState[e.target.name] = e.target.value;
-    this.setState(newState);
-    updateUser(newState);
+ 		this.setState(newState,()=>{
+ 			updateUser(this.state) 	
+ 		})
+ 			
   }
+  
   handleSubmit(e){
    	alert("A new user was Created for you"+ this.state.firstname);
    	this.setState({}); 
@@ -96,7 +97,7 @@ export default class Login extends Component {
 	}
 
 	render() {
-		console.log(this.props)
+console.log("props ", this.props.user)
 		return (
 			<div id="login">
 				<form method="post" action="/user/add">

@@ -4,8 +4,10 @@ import Validation	 from '../components/Validation'
 
 import {updateUser, clearUser} from '../actions'
 
-const mapStateToProps =state =>{
-	user : state.user
+const  mapStateToProps = state =>{
+	return{
+		user : state.user
+	}
 }
 
 const mapDispatchToProps = dispatch =>{

@@ -10,6 +10,7 @@ export const GET_PLANT_BY_NAME ='GET_PLANT_BY_NAME'
 
 
 export const updateUser = (user)=>{
+console.log(user)
 	return{
 		type: "UPDATE_USER",
 		payload: user
