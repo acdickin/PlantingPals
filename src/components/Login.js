@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Validation from './Validation';
+import Validation from '../containers/validation';
 
 export default class Login extends Component {
 	
@@ -10,54 +10,60 @@ export default class Login extends Component {
 			type:"text", 
 			name:"username",
 			placeholder:"Add Username",
-			validation:"req uniq"
+			validation:"req uniq",
+			pristine:true
 		},
 		{
 			title:"E-mail",
 			type:"text",
 		  name:"email",
 		  placeholder:"Add E-mail",
-			validation:"req uniq"
+			validation:"req uniq",
+			pristine:true
 		},
 		{
 			title:"Password",
 		  type:"password",
 		  name:"pass",
 		  placeholder:"Enter password",
-			validation:"req pass"
+			validation:"req",
+			pristine:true
 		},
 		{
 			title:"Password2",
 			type:"password",
 		  name:"pass2" ,
 		  placeholder:"Re-enter password",
-			validation:"req pass same"
+			validation:"req same",
+			pristine:true
 		},
 		{
 			title:"First Name",
 		  type:"text",
 		  name:"firstname",
 		  placeholder:"Add First Name",
-			validation:"req"
+			validation:"req",
+			pristine:true
 		},
 		{
 			title:"Last Name",
 		  type:"text",
 		  name:"lastname",
 		  placeholder:"Add Last Name",
-			validation:"req"
+			validation:"req",
+			pristine:true
 		}
 	]
 
 	constructor(props) {
     super(props);
     this.state = {
-     	username:"",
-      email: "",
-      pass: "",
-      pass2:"",
-      firstname: "",
-      lastname: ""	
+	    username:{value:"", pristine:true},
+	    email: {value:"", pristine:true},
+	    pass: {value:"",  pristine:true},
+	    pass2:{value:"", pristine:true},
+	    firstname: {value:"", pristine:true},
+	    lastname: {value:"", pristine:true},	
     }
     
     this.handleChange = this.handleChange.bind(this);
@@ -66,7 +72,8 @@ export default class Login extends Component {
   handleChange(e) {
 		const{updateUser}=this.props;
     let newState = {};
-    newState[e.target.name] = e.target.value;
+    newState[e.target.name] ={value: e.target.value, pristine:false}    
+
  		this.setState(newState,()=>{
  			updateUser(this.state) 	
  		})
@@ -84,9 +91,9 @@ export default class Login extends Component {
   		return(
   			<div key={form.title} id={form.name}>
   				<h2>{form.title}</h2>
-  				<input key={index} name={form.name} type={form.type} placeholder={form.placeholder} onChange={this.handleChange}  />  
+  				<input key={index} name={form.name}  type={form.type} placeholder={form.placeholder} onChange={this.handleChange}  />  
   			  
-  			 <Validation name={form.name} type={form.validation} />
+  			 <Validation name={form.name} type={form.validation} user={this.state} />
   			</div>
   		)
   	})
@@ -97,7 +104,7 @@ export default class Login extends Component {
 	}
 
 	render() {
-console.log("props ", this.props.user)
+
 		return (
 			<div id="login">
 				<form method="post" action="/user/add">

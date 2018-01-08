@@ -2,17 +2,15 @@ import {combineReducers} from 'redux';
 import {UPDATE_USER, CLEAR_USER} from '../actions'
 
 const UserDefault={
-	user:{
-  	username:"",
-    email: "",
-    pass: "",
-    pass2:"",
-    firstname: "",
-    lastname: ""	
-  }
+	username:{value:"", pristine:"true"},
+  email: {value:"", pristine:"true"},
+  pass: {value:"", pristine:"true"},
+  pass2:{value:"", pristine:"true"},
+  firstname: {value:"", pristine:"true"},
+  lastname: {value:"", pristine:"true"}	
 }
 
-const user = (state=UserDefault, action)=>{
+const user = (state={user:UserDefault}, action)=>{
 	switch(action.type){
 		case UPDATE_USER:
 

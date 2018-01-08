@@ -12,7 +12,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './styles/menu.scss';
 import './styles/main.scss';
-
+import './styles/login.scss';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
