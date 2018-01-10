@@ -89,7 +89,7 @@ export default class Login extends Component {
   renderForm(formData){
   	const forms=this.formData.map((form,index)=>{
   		return(
-  			<div key={form.title} id={form.name}>
+  			<div key={form.title+"_"+form.name} id={form.name}>
   				<h2>{form.title}</h2>
   				<input key={index} name={form.name}  type={form.type} placeholder={form.placeholder} onChange={this.handleChange}  />  
   			  

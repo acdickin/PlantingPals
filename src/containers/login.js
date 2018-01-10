@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
 import Login from '../components/Login'
-import Validation	 from '../components/Validation'
 
 import {updateUser, clearUser} from '../actions'
 

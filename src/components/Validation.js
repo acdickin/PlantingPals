@@ -5,37 +5,46 @@ const check =require('../img/check.png')
 
 
 export default class Validation extends Component {
-	constructor(props) {
-  	super(props);
-		
-	}
-
-
  	renderErrors(){
 	  const types=this.props.type.split(' ')
 	  const name=this.props.name
-	  const validation=types.map((type)=>{
+	  const max= types.length -1;
+
+	  const validation=types.map((type, index)=>{
 			if(!this.props.user.user[name].pristine){
-		  	switch(type){
-					case "req":
-						return <h4 key={name+"_"+ type}>Is Required</h4>
+		  	let errors="";
+		  	if(index===0){
+		  		errors="";
+		  	}
+				console.log("index: ", index)
+				console.log("type: ", type)
+				console.log("max: ", max)
+		  	if (type="req" && this.props.user.user[name].value===""){
+					errors+="Is Required" 
+				}
 						
-					case "uniq":
-						return <h4 key={name+"_"+ type}>Is Unique</h4>
+					// 	if (type= "uniq":){
+					// 	errors+="Is Unique"
+					//}
 						
-					case "same":
-						return <h4 key={name+"_"+ type}>Password does not match</h4>
-		
-					default:
-						return <img key={name+"_"+ type} className="validation-btn" src={check} alt='checkmark' />	
-	  		}
+				if (type="same" && this.props.user.user.pass.value!==this.props.user.user.pass2.value){
+					errors+="Password does not match"
+				}
+				if(index===max && errors!==""){
+					console.log(errors)
+						return <h2 key="errors"> {errors}</h2>	
+
+				}
+				if(index===max && errors===""){
+					return <img key={name+"_"+ index+""} className="validation-btn" src={check} alt='checkmark' />	
+				}
+				
 	  	}
 	  })
 	  return validation
   }
 
  	render(){
- 	
     return (
       <div>
       	
@@ -46,30 +55,3 @@ export default class Validation extends Component {
   }
 }
 
-	// case "req":
-	// 	return (
-	// 		<div>
-	// 			<img src={x} alt='X mark' /> 
-	// 			<h4>Is Required</h4>
-	// 		</div>
-	// 	)
-	// case "uniq":
-	// 	return  (
-	// 		<div>
-	// 			<img src={x} alt='X mark' /> 
-	// 			<h4>Is Unique</h4>
-	// 		</div>
-	// 	)
-	// case "same":
-	// 	return (
-	// 		<div>
-	// 			<img src={x} alt='X mark' />  
-	// 			<h4>Password does not match</h4>
-	// 		</div>
-	// 	)
-	// default:
-	// 	return (
-	// 		<div>
-	// 			<img src={check} alt='checkmark' />
-	// 		</div>
-	// 	)
