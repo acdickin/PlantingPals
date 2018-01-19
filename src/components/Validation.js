@@ -9,34 +9,40 @@ export default class Validation extends Component {
 	  const types=this.props.type.split(' ')
 	  const name=this.props.name
 	  const max= types.length -1;
-
+	  
 	  const validation=types.map((type, index)=>{
 			if(!this.props.user.user[name].pristine){
 		  	let errors="";
 		  	if(index===0){
 		  		errors="";
 		  	}
-				console.log("index: ", index)
-				console.log("type: ", type)
-				console.log("max: ", max)
-		  	if (type="req" && this.props.user.user[name].value===""){
+		  	if (type==="req" && this.props.user.user[name].value===""){
 					errors+="Is Required" 
 				}
-						
-					// 	if (type= "uniq":){
-					// 	errors+="Is Unique"
-					//}
-						
-				if (type="same" && this.props.user.user.pass.value!==this.props.user.user.pass2.value){
+				// 	if (type= "uniq":){
+				// 	errors+="Is Unique"
+				//}
+				if (type==="same" && this.props.user.user.pass.value!==this.props.user.user.pass2.value){
 					errors+="Password does not match"
 				}
 				if(index===max && errors!==""){
-					console.log(errors)
-						return <h2 key="errors"> {errors}</h2>	
+					const{updateUser}=this.props;
+			    let newState = {};
+			    newState[ this.props.user.user[name].name] ={value: this.props.user.user[name].value, pristine:this.props.user.user[name].pristine,valid:true}    
 
+			 		this.setState(newState,()=>{
+			 			updateUser(this.state) 	
+			 		})
+					return <h2 key="errors"> {errors}</h2>	
 				}
 				if(index===max && errors===""){
-					return <img key={name+"_"+ index+""} className="validation-btn" src={check} alt='checkmark' />	
+					const{updateUser}=this.props;
+			    let newState = {};
+			    newState[ this.props.user.user[name].name] ={value: this.props.user.user[name].name, pristine:this.props.user.user[name].pristine,valid:true}    
+
+			 		this.setState(newState,()=>{
+			 			updateUser(this.state) 	
+			 		})				
 				}
 				
 	  	}

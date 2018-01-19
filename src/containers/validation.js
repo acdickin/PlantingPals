@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import Validation	 from '../components/Validation'
+import {updateUser} from '../actions'
 
 const  mapStateToProps = state =>{
 	return{
@@ -7,4 +8,10 @@ const  mapStateToProps = state =>{
 	}
 }
 
-export default connect (mapStateToProps)(Validation);
+const mapDispatchToProps = dispatch =>{
+	return{
+		updateUser: (user)=>dispatch(updateUser(user))
+	}
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(Validation);

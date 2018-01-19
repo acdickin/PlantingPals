@@ -58,12 +58,12 @@ export default class Login extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-	    username:{value:"", pristine:true},
-	    email: {value:"", pristine:true},
-	    pass: {value:"",  pristine:true},
-	    pass2:{value:"", pristine:true},
-	    firstname: {value:"", pristine:true},
-	    lastname: {value:"", pristine:true},	
+	    username:{value:"", pristine:true, valid:null},
+	    email: {value:"", pristine:true, valid:null},
+	    pass: {value:"",  pristine:true, valid:null},
+	    pass2:{value:"", pristine:true, valid:null},
+	    firstname: {value:"", pristine:true, valid:null},
+	    lastname: {value:"", pristine:true, valid:null},	
     }
     
     this.handleChange = this.handleChange.bind(this);
@@ -92,8 +92,7 @@ export default class Login extends Component {
   			<div key={form.title+"_"+form.name} id={form.name}>
   				<h2>{form.title}</h2>
   				<input key={index} name={form.name}  type={form.type} placeholder={form.placeholder} onChange={this.handleChange}  />  
-  			  
-  			 <Validation name={form.name} type={form.validation} user={this.state} />
+  			  <Validation name={form.name} type={form.validation} user={this.state} />
   			</div>
   		)
   	})
