@@ -1,62 +1,52 @@
 import React, { Component } from 'react';
 
 const check =require('../img/check.png')
-// const x =require('../img/xmark.png')
-
 
 export default class Validation extends Component {
+ 	
  	renderErrors(){
-	  const types=this.props.type.split(' ')
-	  const name=this.props.name
+	  const types=this.props.type.split(' ');
+	  const name=this.props.name;
 	  const max= types.length -1;
-	  
+	 		
+		let error=0;	
+
 	  const validation=types.map((type, index)=>{
 			if(!this.props.user.user[name].pristine){
-		  	let errors="";
-		  	if(index===0){
-		  		errors="";
-		  	}
-		  	if (type==="req" && this.props.user.user[name].value===""){
-					errors+="Is Required" 
+			 	if (type==="req" && this.props.user.user[name].value===""){
+					error+=1
+			 		return <h3 key={name+"-error"} className="error"> Field is required</h3>
 				}
 				// 	if (type= "uniq":){
 				// 	errors+="Is Unique"
 				//}
-				if (type==="same" && this.props.user.user.pass.value!==this.props.user.user.pass2.value){
-					errors+="Password does not match"
+				else if (type==="same" && this.props.user.user.pass.value!==this.props.user.user.pass2.value){
+					error+=1
+					return <h3 key={name+"-error"} className="error">Password does not match</h3> 
 				}
-				if(index===max && errors!==""){
-					const{updateUser}=this.props;
-			    let newState = {};
-			    newState[ this.props.user.user[name].name] ={value: this.props.user.user[name].value, pristine:this.props.user.user[name].pristine,valid:true}    
 
-			 		this.setState(newState,()=>{
-			 			updateUser(this.state) 	
-			 		})
-					return <h2 key="errors"> {errors}</h2>	
+				else if (name === "pass2" && this.props.user.user.pass.value=== "" && this.props.user.user.pass2.value===""){
+					error+=1
+					return <h3 key={name+"-error"}  className="error">Empty password</h3> 
 				}
-				if(index===max && errors===""){
-					const{updateUser}=this.props;
-			    let newState = {};
-			    newState[ this.props.user.user[name].name] ={value: this.props.user.user[name].name, pristine:this.props.user.user[name].pristine,valid:true}    
-
-			 		this.setState(newState,()=>{
-			 			updateUser(this.state) 	
-			 		})				
+			
+				else if(index === max && error===0){
+					return <img key={name+"-checkmark"}  className="check" src={check} alt ="check" />
 				}
-				
 	  	}
 	  })
+	  
 	  return validation
+
   }
+
 
  	render(){
     return (
-      <div>
+      
       	
-      	{this.renderErrors()}
+      <span>	{this.renderErrors()}</span>
       	
-      </div>
     )
   }
 }

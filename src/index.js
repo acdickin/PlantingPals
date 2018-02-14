@@ -15,6 +15,8 @@ import './styles/main.scss';
 import './styles/login.scss';
 import './styles/title.scss';
 import './styles/welcome.scss';
+import './styles/vaidation.scss';
+
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 

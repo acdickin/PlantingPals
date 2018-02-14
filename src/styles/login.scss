@@ -1,9 +1,22 @@
 #login{
 	// background: url('../img/plants.png');
-}
-
-.validation-btn{
+	width:90%;
+	margin: 0 auto;
 	
+	h2{
+		margin-bottom:20px;
+	}
+	input{
+		height: 25px;
+		width:90%;
+	}
+}
+#submit{
+	margin-top:20px;
+	width:100%;
+}
+.validation-btn{
 	width:40px;
 	height:40px;
 }
+

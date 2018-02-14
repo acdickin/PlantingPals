@@ -2,12 +2,12 @@ import {combineReducers} from 'redux';
 import {UPDATE_USER, CLEAR_USER} from '../actions'
 
 const UserDefault={
-	username:{value:"", pristine:"true", valid:null},
-  email: {value:"", pristine:"true", valid:null},
-  pass: {value:"", pristine:"true", valid:null},
-  pass2:{value:"", pristine:"true", valid:null},
-  firstname: {value:"", pristine:"true", valid:null},
-  lastname: {value:"", pristine:"true", valid:null}	
+	username:{value:"", pristine:"true", valid:false},
+  email: {value:"", pristine:"true", valid:false},
+  pass: {value:"", pristine:"true", valid:false},
+  pass2:{value:"", pristine:"true", valid:false},
+  firstname: {value:"", pristine:"true", valid:false},
+  lastname: {value:"", pristine:"true", valid:false}	
 }
 
 const user = (state={user:UserDefault}, action)=>{
