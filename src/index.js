@@ -6,7 +6,10 @@ import { HashRouter } from 'react-router-dom'
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 import reducers from './reducers';
+
 
 import registerServiceWorker from './registerServiceWorker';
 import './styles/globals.scss';
@@ -18,7 +21,7 @@ import './styles/welcome.scss';
 import './styles/vaidation.scss';
 
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(logger, thunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

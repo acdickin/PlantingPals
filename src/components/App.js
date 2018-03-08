@@ -5,7 +5,7 @@ import Menu from './Menu';
 import Login from'../containers/login';
 import Title from'./Title';
 
-import Plants from'./Plants';
+import Plants from'../containers/plants';
 import MyGarden from'./MyGarden';
 import About from'./About';
 
@@ -23,6 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <Title/>
+        <Route exact path ="/" component ={Welcome} />
         <Route path ="/welcome" component ={Welcome} />
         <Route exact path="/login" component={Login}/>
         <Route exact path="/plants" component={Plants}/>

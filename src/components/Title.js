@@ -21,7 +21,7 @@ const plantrG = require("../img/plantrG.svg");
   render() {
     return (
       <div id="title">
-				<NavLink exact to='/myGarden'><img src = {plantrG} alt ="plantr Logo"/>  </NavLink>
+				<NavLink exact to='/my_garden'><img src = {plantrG} alt ="plantr Logo"/>  </NavLink>
         <h1>{this.getTitle()}</h1>
         <MdSettings size={40}/>
       </div>

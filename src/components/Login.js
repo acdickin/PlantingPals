@@ -41,8 +41,8 @@ export default class Login extends Component {
 
 	render() {
 		return (
-			<div id="login">
-				<form method="post" action="/user/add">
+			<div id="login" className="content">
+				<form >
 					<div className="formData">
 					 	{this.renderForm(this.formData)}
 					</div>
@@ -53,6 +53,8 @@ export default class Login extends Component {
 			</div>
 		);
 	}
+
+	//method="post" action="/user/add"
 
  	formData=[	
  		{
@@ -69,14 +71,6 @@ export default class Login extends Component {
 		  name:"lastname",
 		  placeholder:"Add Last Name",
 			validation:"req",
-			pristine:true
-		},
-		{
-			title:"Username",
-			type:"text", 
-			name:"username",
-			placeholder:"Add Username",
-			validation:"req uniq",
 			pristine:true
 		},
 		{

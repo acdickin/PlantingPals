@@ -1,18 +1,20 @@
 import {connect} from 'react-redux';
-import Login from '../components/Login'
+import Plants from '../components/Plants'
 
-import {getPlants} from '../actions'
+import {fetchPlantsData } from '../actions'
 
 const  mapStateToProps = state =>{
 	return{
-		plants : state.user
+		plants: state.plants.plants,
+	  hasError: state.plantsHaveError,
+    isLoading: state.plantsAreLoading
 	}
 }
 
 const mapDispatchToProps = dispatch =>{
 	return{
-		getPlants: (user)=>dispatch(getPlants(user))
+		getPlants: (plants)=>dispatch(fetchPlantsData(plants))
 	}
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(Login);
+export default connect (mapStateToProps, mapDispatchToProps)(Plants);

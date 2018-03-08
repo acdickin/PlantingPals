@@ -1,18 +1,19 @@
-// import {connect} from 'react-redux';
-// import MyGarden from '../components/MyGarden'
+import {connect} from 'react-redux';
+import MyGarden from '../components/MyGarden'
 
-// import {} from '../actions'
+import {} from '../actions'
 
-// const  mapStateToProps = state =>{
-// 	return{
-		
-// 	}
-// }
+const  mapStateToProps = state =>{
+	return{
+		plants:state.plants.plants,
+		user:state.user.user
+	}
+}
 
-// const mapDispatchToProps = dispatch =>{
-// 	return{
-	
-// 	}
-// }
+const mapDispatchToProps = dispatch =>{
+	return{
 
-// export default connect (mapStateToProps, mapDispatchToProps)(Login);
+	}
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(Login);
