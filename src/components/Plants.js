@@ -15,12 +15,16 @@ export default class Plants extends Component {
 			selected: e.target.id
 		})
 	}
-
+	handleSelect(e){
+		e.preventDefault();
+		console.log(e.target.id)
+		window.location.hash = window.location.hash +"/"+e.target.id
+	}
 	createDisplay(planttype){
 		const plants =this.props.plants
-		const arry =plants.filter(plant=>plant.type===planttype)
+		const arry =plants.filter(plant=>plant.type===planttype.toString())
 		const display=arry.map((item)=>
-			<li key={item._id}>
+			<li key={item._id} id ={item.name} onClick={this.handleSelect}>
 				{item.name}
 			</li>
 		)
@@ -38,6 +42,7 @@ export default class Plants extends Component {
 				return this.createDisplay("vegetable")
 		}
 	}
+
 	render(){
 		return(
 			<div id="plants" className="content">
