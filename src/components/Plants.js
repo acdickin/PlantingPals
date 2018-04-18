@@ -22,7 +22,7 @@ export default class Plants extends Component {
 	}
 	createDisplay(planttype){
 		const plants =this.props.plants
-		const arry =plants.filter(plant=>plant.type===planttype.toString())
+		const arry =plants.filter(plant=>plant.type===planttype)
 		const display=arry.map((item)=>
 			<li key={item._id} id ={item.name} onClick={this.handleSelect}>
 				{item.name}
