@@ -2,24 +2,49 @@ import React, { Component } from 'react';
 
 
 export default class Plants extends Component {
-	componentWillMount(){
-		this.props.getPlants()
+	constructor() {
+    super();
+		this.state=({
+			selected: "Vegetable"
+		})
+		this.handleClick =this.handleClick.bind(this)
 	}
-	// renderPlantList(){
-	// 	this.state.plants.plants.map((plant)=>{
-	// 		<li key={plant.name}>
-	// 			{plant.name}
-	// 			{plant.type}
-	// 		</li>
-	// 	})
-	// }
+	handleClick(e){
+		console.log( e.target.id)
+		this.setState({
+			selected: e.target.id
+		})
+	}
+
+	createDisplay(planttype){
+		const plants =this.props.plants
+		const arry =plants.filter(plant=>plant.type===planttype)
+		const display=arry.map((item)=>
+			<li key={item._id}>
+				{item.name}
+			</li>
+		)
+		return <ul className="{planttype}list"> {display} </ul>
+	}
+
+	renderPlantList(){
+		const selected=this.state.selected
+		switch(selected){
+			case "Fruit":
+				return this.createDisplay("fruit")
+			case "Herb":
+				return this.createDisplay("herb")
+			default:
+				return this.createDisplay("vegetable")
+		}
+	}
 	render(){
-		console.log(this.props)
-
 		return(
-
 			<div id="plants" className="content">
-				<h2>Plants</h2>
+				<button id="Vegetable" onClick={this.handleClick}>Vegetable</button>
+				<button id="Fruit" onClick={this.handleClick}>Fruit</button>
+				<button id="Herb" onClick={this.handleClick}>Herb</button>
+				{this.renderPlantList()}
 			</div>
 		)
 	}
@@ -32,4 +57,4 @@ export default class Plants extends Component {
 	//  }
 	// 	<ul>
 	// 		{this.renderPlantList}
-	// 	</ul>	
+	// 	</ul>
