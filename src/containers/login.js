@@ -1,18 +1,18 @@
 import {connect} from 'react-redux';
 import Login from '../components/Login'
 
-import {updateUser, clearUser} from '../actions'
+import {updateLogin, clearLogin} from '../actions'
 
 const  mapStateToProps = state =>{
 	return{
-		user : state.user
+		login : state.login
 	}
 }
 
 const mapDispatchToProps = dispatch =>{
 	return{
-		updateUser: (user)=>dispatch(updateUser(user)),
-		clearUser: (user)=>dispatch(clearUser(user))
+		updateLogin: (user)=>dispatch(updateLogin(user)),
+		clearLogin: (user)=>dispatch(clearLogin(user))
 	}
 }
 

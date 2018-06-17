@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {UPDATE_USER, CLEAR_USER, PLANTS_FETCH_DATA_SUCCESS  } from '../actions' //PLANTS_HAVE_ERROR, PLANTS_ARE_LOADING
+import {UPDATE_LOGIN, CLEAR_LOGIN, PLANTS_FETCH_DATA_SUCCESS, GET_USERINFO, UPDATE_PLOT   } from '../actions' //PLANTS_HAVE_ERROR, PLANTS_ARE_LOADING
 
 const plantdata=[
 	{
@@ -203,20 +203,64 @@ const plantdata=[
 			"companion":["beans"," broccoli"," brussels sprouts"," cabbage"," cauliflower"," kohlrabi"," celery"," eggplant"," leeks"," lettuce"," melons"," peas"," potatoes"," radishes"," tomatoes"," nasturtium"," strawberries"
 	]}
 ]
-const UserDefault={
+const LoginDefault={
 	firstname: {value:"", pristine:"true", valid:false},
   lastname: {value:"", pristine:"true", valid:false},
   email: {value:"", pristine:"true", valid:false},
   pass: {value:"", pristine:"true", valid:false},
   pass2:{value:"", pristine:"true", valid:false}
 }
+const UserDefault ={
+	"username": "catman",
+	"email": "catman@mail.com",
+	"firstname": "cat",
+	"lastname": "man",
+	"plots": [
+		{
+			"name": "My Plot"
+			"plotHeight": 2,
+			"plotWidth": 4,
+			"plants": [
+				{
+					"name":"tomatoes",
+					"row": 0,
+					"col":0
+				},
+				{
+					"name":"tomatoes",
+					"row": 0,
+					"col":3
+				},
+				{
+					"name":"potatoes",
+					"row": 1,
+					"col":2
+				}
+			]
+		}
+	],
+	"created": {
+			"$date": "2017-12-28T21:20:17.470Z"
+	}
+}
 
-const user = (state={user:UserDefault}, action)=>{
+const user =( state = {user:UserDefault}, action)=>{
+	switch (action.type){
+		case GET_USERINFO:
+			return ( state={...state, login: action.payload})
+		default:
+			return state
+	}
+}
+
+
+
+const login = (state={login:LoginDefault}, action)=>{
 	switch(action.type){
-		case UPDATE_USER:
-			return ( state={...state, user: action.payload} )
-		case CLEAR_USER:
-			return( state={ ...state, user:UserDefault} )
+		case UPDATE_LOGIN:
+			return ( state={ ...state, login: action.payload} )
+		case CLEAR_LOGIN:
+			return( state={ ...state, login:LoginDefault} )
 		default:
 			return state
 	}

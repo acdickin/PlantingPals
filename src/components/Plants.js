@@ -24,11 +24,11 @@ export default class Plants extends Component {
 		const plants =this.props.plants
 		const arry =plants.filter(plant=>plant.type===planttype)
 		const display=arry.map((item)=>
-			<li key={item._id} id ={item.name} onClick={this.handleSelect}>
+			<li key={item._id}  className ="plantcard" id ={item.name} onClick={this.handleSelect}>
 				{item.name}
 			</li>
 		)
-		return <ul className="{planttype}list"> {display} </ul>
+		return <ul className="list {planttype}"> {display} </ul>
 	}
 
 	renderPlantList(){

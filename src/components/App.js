@@ -3,10 +3,10 @@ import { Route } from 'react-router-dom';
 
 import About from './About';
 import Menu from './Menu';
-import MyGarden from './MyGarden';
 import Title from './Title';
 import Welcome from'./Welcome';
 
+import MyGarden from '../containers/mygarden';
 import Login from '../containers/login';
 import Plant from '../containers/plant';
 import Plants from '../containers/plants';

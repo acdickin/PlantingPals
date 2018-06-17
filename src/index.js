@@ -19,7 +19,7 @@ import './styles/login.scss';
 import './styles/title.scss';
 import './styles/welcome.scss';
 import './styles/vaidation.scss';
-
+import './styles/plant.scss';
 
 const createStoreWithMiddleware = applyMiddleware(logger, thunk)(createStore);
 
@@ -31,4 +31,3 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 registerServiceWorker();
-

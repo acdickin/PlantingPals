@@ -1,16 +1,16 @@
 import {connect} from 'react-redux';
 import Validation	 from '../components/Validation'
-import {updateUser} from '../actions'
+import {updateLogin} from '../actions'
 
 const  mapStateToProps = state =>{
 	return{
-		user : state.user
+		login : state.login
 	}
 }
 
 const mapDispatchToProps = dispatch =>{
 	return{
-		updateUser: (user)=>dispatch(updateUser(user))
+		updateLogin: (login)=>dispatch(updateLogin(login))
 	}
 }
 

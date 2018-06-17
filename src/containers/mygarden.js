@@ -5,8 +5,8 @@ import {} from '../actions'
 
 const  mapStateToProps = state =>{
 	return{
-		plants:state.plants.plants,
-		user:state.user.user
+		plants: state.plants.plant,
+		user: state.user.user
 	}
 }
 
@@ -16,4 +16,4 @@ const mapDispatchToProps = dispatch =>{
 	}
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(Login);
+export default connect (mapStateToProps, mapDispatchToProps)(MyGarden);
